@@ -167,8 +167,10 @@ function TaskForm({ onSave, initialTask }) {
                   px: 2,
                   fontWeight: 700,
                   fontSize: '0.8rem',
-                  color: '#7A7A7A',
+                  backgroundColor: '#7A7A7A',
+                  color: '#fff',
                   borderColor: '#7A7A7A',
+                  '&:hover': { backgroundColor: '#636363' },
                   '&.Mui-selected': {
                     backgroundColor: '#07F2E6',
                     color: '#fff',
