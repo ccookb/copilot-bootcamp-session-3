@@ -228,24 +228,7 @@ function TaskList({ onEdit }) {
                   <ToggleButton
                     key={p}
                     value={p}
-                    sx={{
-                      px: 1,
-                      py: 0,
-                      minWidth: 32,
-                      height: 22,
-                      fontWeight: 700,
-                      fontSize: '0.65rem',
-                      backgroundColor: '#7A7A7A',
-                      color: '#fff',
-                      borderColor: '#7A7A7A',
-                      '&:hover': { backgroundColor: '#636363' },
-                      '&.Mui-selected': {
-                        backgroundColor: '#07F2E6',
-                        color: '#fff',
-                        borderColor: '#07F2E6',
-                        '&:hover': { backgroundColor: '#05d4ca' },
-                      },
-                    }}
+                    className="priority-btn priority-btn--list"
                   >
                     {p}
                   </ToggleButton>

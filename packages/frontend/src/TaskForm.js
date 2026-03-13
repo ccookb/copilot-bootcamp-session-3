@@ -163,21 +163,7 @@ function TaskForm({ onSave, initialTask }) {
                 key={p}
                 value={p}
                 data-testid={`priority-${p.toLowerCase()}`}
-                sx={{
-                  px: 2,
-                  fontWeight: 700,
-                  fontSize: '0.8rem',
-                  backgroundColor: '#7A7A7A',
-                  color: '#fff',
-                  borderColor: '#7A7A7A',
-                  '&:hover': { backgroundColor: '#636363' },
-                  '&.Mui-selected': {
-                    backgroundColor: '#07F2E6',
-                    color: '#fff',
-                    borderColor: '#07F2E6',
-                    '&:hover': { backgroundColor: '#05d4ca' },
-                  },
-                }}
+                className="priority-btn priority-btn--form"
               >
                 {p}
               </ToggleButton>
