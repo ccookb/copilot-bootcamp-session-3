@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
-  List, ListItem, ListItemText, IconButton, Checkbox, Typography, Box, CircularProgress, Paper, Chip
+  List, ListItem, ListItemText, IconButton, Checkbox, Typography, Box, CircularProgress, Paper, Chip,
+  ToggleButtonGroup, ToggleButton
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -61,6 +62,20 @@ function TaskList({ onEdit }) {
       fetchTasks();
     } catch (err) {
       setError('Failed to delete task');
+    }
+  };
+
+  const handlePriorityChange = async (task, newPriority) => {
+    if (!newPriority) return;
+    try {
+      await fetch(`/api/tasks/${task.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ priority: newPriority })
+      });
+      fetchTasks();
+    } catch (err) {
+      setError('Failed to update priority');
     }
   };
 
@@ -127,7 +142,7 @@ function TaskList({ onEdit }) {
           <ListItem 
             key={task.id} 
             sx={{ 
-              pr: 18,
+              pr: 30,
               py: 1,
               mb: 1,
               borderRadius: 2,
@@ -203,6 +218,37 @@ function TaskList({ onEdit }) {
                 gap: 1
               }}
             >
+              <ToggleButtonGroup
+                value={task.priority || 'P3'}
+                exclusive
+                onChange={(_, val) => handlePriorityChange(task, val)}
+                size="small"
+              >
+                {['P1', 'P2', 'P3'].map(p => (
+                  <ToggleButton
+                    key={p}
+                    value={p}
+                    sx={{
+                      px: 1,
+                      py: 0,
+                      minWidth: 32,
+                      height: 22,
+                      fontWeight: 700,
+                      fontSize: '0.65rem',
+                      color: '#7A7A7A',
+                      borderColor: '#bdbdbd',
+                      '&.Mui-selected': {
+                        backgroundColor: '#07F2E6',
+                        color: '#fff',
+                        borderColor: '#07F2E6',
+                        '&:hover': { backgroundColor: '#05d4ca' },
+                      },
+                    }}
+                  >
+                    {p}
+                  </ToggleButton>
+                ))}
+              </ToggleButtonGroup>
               {task.due_date && (
                 <Chip
                   icon={<EventIcon sx={{ fontSize: 14 }} />}
