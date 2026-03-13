@@ -236,7 +236,7 @@ function TaskList({ onEdit }) {
                       fontWeight: 700,
                       fontSize: '0.65rem',
                       color: '#7A7A7A',
-                      borderColor: '#bdbdbd',
+                      borderColor: '#7A7A7A',
                       '&.Mui-selected': {
                         backgroundColor: '#07F2E6',
                         color: '#fff',
